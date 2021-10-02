@@ -13,7 +13,6 @@ app.use(express.static(path.join(__dirname, "views", "build")));
 
 app.use("/api", routes);
 
-
 app.use("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "build", "index.html"));
 })
