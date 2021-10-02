@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd views && npm run build && cd .. && node index.js"
+    "start": "cd views && npm run build && cd .. && node index.js",
+    "dev": "(cd views && npm start) & node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.22.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
   }
