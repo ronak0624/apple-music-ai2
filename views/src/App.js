@@ -45,7 +45,7 @@ function App() {
 
             <Switch>
                 <Route path="/playlists">
-                    <Playlist removeFromPlaylist={removeFromPlaylist} createNewPlaylist={createNewPlaylist} playlists={playlists} />
+                    <Playlist play={playMedia} removeFromPlaylist={removeFromPlaylist} createNewPlaylist={createNewPlaylist} playlists={playlists} />
                 </Route>
 
                 <Route path="/">

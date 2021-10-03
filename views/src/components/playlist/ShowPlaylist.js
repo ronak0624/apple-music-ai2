@@ -5,7 +5,7 @@ import Videos from '../search/Videos';
 import Songs from '../search/Songs';
 
 function Playlist(props) {
-    const { list, removeFromPlaylist, playlistName } = props;
+    const { list, removeFromPlaylist, playlistName, play } = props;
 
 
     return (
@@ -47,7 +47,7 @@ function Playlist(props) {
                     artwork = artwork.replace("{h}", "800");
 
                     return (
-                        <tr key={i}>
+                        <tr className="cursor-pointer" onClick={() => play(media.preview, 'audio', media.name, media.artistName)} key={i}>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0 h-10 w-10">
@@ -82,7 +82,7 @@ function Playlist(props) {
 }
 
 export default function ShowPlaylist(props) {
-    const { name, list, removeFromPlaylist } = props;
+    const { name, list, removeFromPlaylist, play } = props;
 
     return (
         <Disclosure className="mt-3">
@@ -97,7 +97,7 @@ export default function ShowPlaylist(props) {
                     </Disclosure.Button>
                     <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                         {list && list.length > 0 ?
-                            <Playlist playlistName={name} removeFromPlaylist={removeFromPlaylist} list={list} />
+                            <Playlist play={play} playlistName={name} removeFromPlaylist={removeFromPlaylist} list={list} />
                             :
                             <p>No media in this playlist yet.</p>
                         }

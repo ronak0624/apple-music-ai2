@@ -4,7 +4,7 @@ import ShowPlaylist from "../components/playlist/ShowPlaylist";
 
 
 export default function Playlist(props) {
-    const { playlists, createNewPlaylist, removeFromPlaylist } = props;
+    const { playlists, createNewPlaylist, removeFromPlaylist, play } = props;
     const [focus, toggleFocus] = useState(false);
     const [newPlaylist, setNewPlaylist] = useState("");
 
@@ -29,7 +29,7 @@ export default function Playlist(props) {
             }
             {Object.keys(playlists).map(name => {
                 return (
-                    <ShowPlaylist removeFromPlaylist={removeFromPlaylist} list={playlists[name]} name={name} />
+                    <ShowPlaylist play={play} removeFromPlaylist={removeFromPlaylist} list={playlists[name]} name={name} />
                 )
             })}
         </div>

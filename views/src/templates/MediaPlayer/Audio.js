@@ -21,8 +21,6 @@ export default function Audio() {
 
         audio.addEventListener("timeupdate", setAudioTime);
 
-        playing ? audio.play() : audio.pause();
-
         if (clickedTime && clickedTime !== currentTime) {
             audio.currentTime = clickedTime;
             setClickedTime(null);
