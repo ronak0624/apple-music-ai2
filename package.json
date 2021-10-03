@@ -8,7 +8,7 @@
     "start": "node index.js",
     "build": "cd views && npm run build",
     "dev": "(cd views && npm start) & node index.js",
-    "heroku-postbuild": "(cd views && npm install && npm run build) && npm install"
+    "heroku-postbuild": "npm install --prefix ./views && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
