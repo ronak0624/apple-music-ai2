@@ -12,8 +12,8 @@ export default function Playlist(props) {
 
     return (
         <div className="container mx-auto mt-5 px-3 md:px-1">
-            <h1 className="text-3xl font-bold my-5 ml-2">Your playlists</h1>
-            <div className="flex flex-row justify-center w-full mb-5 cursor-pointer">
+            <h1 className="text-3xl font-bold mb-5 mt-10 ml-2">Your playlists</h1>
+            <div className="flex flex-row justify-center w-full mb-10 cursor-pointer">
                 <div onClick={() => toggleFocus(!focus)} className="p-3 inline-block rounded-full bg-gray-100 text-gray-600">
                     {!focus ? <PlusIcon className="w-10 h-10" /> : <XIcon className="w-10 h-10" />}
                 </div>
