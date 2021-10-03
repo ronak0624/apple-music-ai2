@@ -1,6 +1,6 @@
 # Apple Lightweight Music Catalog
 
-### Transcription
+## Transcription Writeup
 
 If I were to implement a transcription feature into this application, I would likely use an icon, which would open 
 a larger tab panel. This would contain a line by line, autoscrolling transcription of the audio or video file. When 
