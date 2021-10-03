@@ -7,7 +7,7 @@ export default function AddToPlaylist(props) {
     const { media, playlists, addToPlaylist, type } = props;
 
     return (
-        <Menu as="div" className="z-10 relative inline-block text-left float-right">
+        <Menu as="div" className="z-5 relative inline-block text-left float-right">
             <div>
                 <Menu.Button className="p-3 rounded-full bg-gray-100 text-gray-600 float-right">
                     <PlusIcon className="w-5 h-5" />

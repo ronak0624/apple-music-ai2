@@ -20,7 +20,7 @@ export default function Player(props) {
     }
 
     return (
-        <div className="w-screen fixed bottom-0 bg-gray-700 p-5 text-gray-50">
+        <div className="w-screen fixed z-10 bottom-0 bg-gray-700 p-5 text-gray-50">
             <div onClick={() => closePlayer()} className="row-auto mb-3 cursor-pointer">
                 <XIcon className="w-8 h-8" />
             </div>
