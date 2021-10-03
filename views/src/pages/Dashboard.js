@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import axios from 'axios';
 import { SearchIcon } from '@heroicons/react/outline';
 
+
 function Search(props) {
     return (
         <div {...props}>
@@ -17,27 +18,105 @@ function Search(props) {
 }
 
 function Songs(props) {
-    const { list } = props;
+    const { resultList } = props;
 
     return (
         <div {...props}>
-            <h3 className="text-xl font-bold">Songs</h3>
-            {list && list.map(song => {
-                let artwork = song.artwork.replace("{w}", "600");
-                artwork = artwork.replace("{h}", "800");
-                
-                return(
-                    <div>
-                        <img src={artwork}></img>
-                        <h4>{song.name}</h4>
-                    </div>
-                )
-            })}
+            <h3 className="text-xl font-bold mb-3">Songs</h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {resultList && resultList.map(song => {
+                    let artwork = song.artwork.replace("{w}", "600");
+                    artwork = artwork.replace("{h}", "800");
+
+                    return (
+                        <div onClick={() => props.play(song.preview)} className="inline-block p-2">
+                            <img src={artwork}></img>
+                            <h4 className="font-semibold mt-2">{song.name}</h4>
+                            <span className="text-sm text-gray-600">{song.genreNames.join(", ")}</span>
+                            <p className="text-sm text-gray-600">Song</p>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+
+    )
+}
+
+function Albums(props) {
+    const { resultList } = props;
+
+    return (
+        <div {...props}>
+            <h3 className="text-xl font-bold mb-3">Albums</h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {resultList && resultList.map(album => {
+                    let artwork = album.artwork.replace("{w}", "600");
+                    artwork = artwork.replace("{h}", "800");
+
+                    return (
+                        <div className="inline-block p-2">
+                            <img src={artwork}></img>
+                            <h4 className="font-semibold mt-2">{album.name}</h4>
+                            <span className="text-sm text-gray-600">{album.genreNames.join(", ")}</span>
+                            <p className="text-sm text-gray-600">Album</p>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
 
-export default function Dashboard() {
+function Artists(props) {
+    const { resultList } = props;
+
+    return (
+        <div {...props}>
+            <h3 className="text-xl font-bold mb-3">Artists</h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {resultList && resultList.map(artist => {
+
+                    return (
+                        <div className="inline-block p-2">
+                            <h4 className="font-semibold mt-2">{artist.name}</h4>
+                            <span className="text-sm text-gray-600">{artist.genreNames.join(", ")}</span>
+                            <p className="text-sm text-gray-600">Artist</p>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+function Videos(props) {
+    const { resultList } = props;
+
+    return (
+        <div {...props}>
+            <h3 className="text-xl font-bold mb-3">Music Videos</h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {resultList && resultList.map(video => {
+                    let artwork = video.artwork.replace("{w}", "600");
+                    artwork = artwork.replace("{h}", "800");
+                    console.log(video);
+
+                    return (
+                        <div onClick={() => props.play(video.preview)} className="inline-block p-2">
+                            <img src={artwork}></img>
+                            <h4 className="font-semibold mt-2">{video.name}</h4>
+                            <span className="text-sm text-gray-600">{video.genreNames.join(", ")}</span>
+                            <p className="text-sm text-gray-600">Music Video</p>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+export default function Dashboard(props) {
     const [results, setResults] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -48,12 +127,16 @@ export default function Dashboard() {
             setResults(err.response.data);
         })
     }
+
     console.log(results.song)
 
     return (
         <div className="container w-3/4 mx-auto mt-5">
             <Search onSubmit={(e) => submitSearch(e)} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-            <Songs className="mt-5" list={results.song} />
+            {results.song && <Songs play={props.play} className="mt-5 border rounded p-5 border-gray-200" resultList={results.song} />}
+            {results.artist && <Artists className="mt-5 border rounded p-5 border-gray-200" resultList={results.artist} />}
+            {results.album && <Albums className="mt-5 border rounded p-5 border-gray-200" resultList={results.album} />}
+            {results['music-video'] && <Videos play={props.play} className="mt-5 border rounded p-5 border-gray-200" resultList={results['music-video']} />}
         </div>
     )
 }
