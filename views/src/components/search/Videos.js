@@ -11,7 +11,7 @@ function Videos(props) {
                     console.log(video);
 
                     return (
-                        <div onClick={() => props.play(video.preview, 'video')} className="inline-block p-2">
+                        <div onClick={() => props.play(video.preview, 'video', video.name, video.artistName)} className="inline-block p-2">
                             <img src={artwork}></img>
                             <h4 className="font-semibold mt-2">{video.name}</h4>
                             <span className="text-sm text-gray-600">{video.genreNames.join(", ")}</span>
