@@ -1,15 +1,33 @@
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Playlist from './pages/Playlist';
 import Navbar from './templates/Navbar';
 import MediaPlayer from './templates/MediaPlayer/index';
 
-import { useState } from 'react'
 
 function App() {
     const [currentMedia, setCurrentMedia] = useState(false);
-    const [playlists, setPlaylist] = useState(false);
+    const [playlists, setPlaylistHook] = useState({});
+
     const [searchResults, setSearchResults] = useState(false);
+
+    if (Object.keys(playlists).length === 0) {
+        let store = JSON.parse(sessionStorage.getItem("playlists"));
+
+        if (Object.keys(store).length !== 0) {
+            setPlaylistHook(store)
+        }
+    }
+
+
+    const setPlaylist = (change) => {
+        setPlaylistHook(change);
+    }
+
+    useEffect(() => {
+        sessionStorage.setItem("playlists", JSON.stringify(playlists))
+    }, [playlists])
 
     const playMedia = (src, type, name, artist) => {
         setCurrentMedia({ src: src, type: type, name: name, artist: artist });
@@ -39,8 +57,8 @@ function App() {
     const removeFromPlaylist = (id, playlist) => {
         let newList = playlists[playlist].filter(item => item.id !== parseInt(id));
 
-        setPlaylist({...playlists, [playlist]: newList})
-    } 
+        setPlaylist({ ...playlists, [playlist]: newList })
+    }
 
     return (
         <Router>
@@ -59,7 +77,7 @@ function App() {
 
             </Switch>
 
-            {currentMedia && <MediaPlayer closePlayer= {closePlayer} src={currentMedia.src} type={currentMedia.type} name={currentMedia.name} artist={currentMedia.artist} />}
+            {currentMedia && <MediaPlayer closePlayer={closePlayer} src={currentMedia.src} type={currentMedia.type} name={currentMedia.name} artist={currentMedia.artist} />}
         </Router>
     );
 }
