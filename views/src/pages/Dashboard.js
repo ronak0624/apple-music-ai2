@@ -25,13 +25,19 @@ function Search(props) {
 
 export default function Dashboard(props) {
     const [results, setResults] = useState(false);
+    const [loading, toggleLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+
     const { playlists, addToPlaylist, play } = props;
 
     const submitSearch = (e) => {
+        e.preventDefault();
+        toggleLoading(true);
         axios.get("/api/search?term=" + searchTerm).then(res => {
+            toggleLoading(false);
             setResults(res.data);
         }).catch(err => {
+            toggleLoading(false);
             console.log(err);
         })
     }
@@ -42,28 +48,37 @@ export default function Dashboard(props) {
         <div className="container mx-auto mt-5 pb-60 px-3 md:px-1">
             <h1 className="text-3xl font-bold my-5 ml-2">Browse media</h1>
             <Search onSubmit={(e) => submitSearch(e)} onChange={(e) => setSearchTerm(e.target.value)} />
-            {results.song &&
-                <Songs playlists={playlists} addSong={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results.song} />
-            }
+            {loading ?
+                <div class="animate-pulse flex space-x-4 absolute right-1/2 top-1/2">
+                    <div class="rounded-full bg-blue-400 h-12 w-12"></div>
+                </div>
+                :
+                <div>
 
-            {results.artist &&
-                <Artists className="mt-5 border rounded p-5 border-gray-200" resultList={results.artist} />
-            }
+                    {results.song &&
+                        <Songs playlists={playlists} addSong={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results.song} />
+                    }
 
-            {results['music-video'] &&
-                <Videos playlists={playlists} addVideo={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results['music-video']} />
-            }
+                    {results.artist &&
+                        <Artists className="mt-5 border rounded p-5 border-gray-200" resultList={results.artist} />
+                    }
 
-            {results.album &&
-                <Albums className="mt-5 border rounded p-5 border-gray-200" resultList={results.album} />
-            }
+                    {results['music-video'] &&
+                        <Videos playlists={playlists} addVideo={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results['music-video']} />
+                    }
 
-            {results.station && results.station.length > 0 &&
-                <Stations className="mt-5 border rounded p-5 border-gray-200" resultList={results.station} />
-            }
+                    {results.album &&
+                        <Albums className="mt-5 border rounded p-5 border-gray-200" resultList={results.album} />
+                    }
 
-            {results.playlists && results.playlists.length > 0 && 
-                <Playlists className="mt-5 border rounded p-5 border-gray-200" resultList={results.playlists} />
+                    {results.station && results.station.length > 0 &&
+                        <Stations className="mt-5 border rounded p-5 border-gray-200" resultList={results.station} />
+                    }
+
+                    {results.playlists && results.playlists.length > 0 &&
+                        <Playlists className="mt-5 border rounded p-5 border-gray-200" resultList={results.playlists} />
+                    }
+                </div>
             }
         </div>
     )

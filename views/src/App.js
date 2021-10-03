@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 function App() {
     const [currentMedia, setCurrentMedia] = useState(false);
-    const [playlists, setPlaylist] = useState({ "fun": [] });
+    const [playlists, setPlaylist] = useState(false);
 
     const playMedia = (src, type, name, artist) => {
         setCurrentMedia({ src: src, type: type, name: name, artist: artist });

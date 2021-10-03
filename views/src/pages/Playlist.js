@@ -8,6 +8,8 @@ export default function Playlist(props) {
     const [focus, toggleFocus] = useState(false);
     const [newPlaylist, setNewPlaylist] = useState("");
 
+    const names = Object.keys(playlists);
+
     return (
         <div className="container mx-auto mt-5 px-3 md:px-1">
             <h1 className="text-3xl font-bold my-5 ml-2">Your playlists</h1>
@@ -28,11 +30,16 @@ export default function Playlist(props) {
                     <button onClick={() => createNewPlaylist(newPlaylist)} className="py-2 px-4 flex-none bg-blue-500 text-white rounded ml-2">Add</button>
                 </div>
             }
-            {Object.keys(playlists).map(name => {
-                return (
-                    <ShowPlaylist play={play} removeFromPlaylist={removeFromPlaylist} list={playlists[name]} name={name} />
-                )
-            })}
+            {names.length > 0 ?
+                names.map(name => {
+                    return (
+                        <ShowPlaylist play={play} removeFromPlaylist={removeFromPlaylist} list={playlists[name]} name={name} />
+                    )
+                }) :
+                <div>
+                    <p>No playlists yet...</p>
+                </div>
+            }
         </div>
     )
 }
