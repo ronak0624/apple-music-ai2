@@ -1,5 +1,7 @@
 # Apple Lightweight Music Catalog
 
+[View site](https://apple-music-catalog.herokuapp.com)
+
 ## Transcription Writeup
 
 If I were to implement a transcription feature into this application, I would likely use an icon, which would open 
