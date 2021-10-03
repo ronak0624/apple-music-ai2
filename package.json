@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd views && npm run build && cd .. && node index.js",
-    "dev": "(cd views && npm start) & node index.js"
+    "start": "(cd views && npm run build) & node index.js",
+    "dev": "(cd views && npm start) & node index.js",
+    "heroku-postbuild": "(cd views && npm install) & npm start"
   },
   "keywords": [],
   "author": "",
