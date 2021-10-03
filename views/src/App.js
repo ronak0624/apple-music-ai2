@@ -16,7 +16,7 @@ function App() {
 
     const addToPlaylist = (media, playlist, type) => {
         media.type = type;
-        
+
         if (playlists[playlist].length > 0) {
 
             let newList = [...playlists[playlist], media];
@@ -31,6 +31,12 @@ function App() {
         setPlaylist({ ...playlists, [name]: [] })
     }
 
+    const removeFromPlaylist = (id, playlist) => {
+        let newList = playlists[playlist].filter(item => item.id != id);
+
+        setPlaylist({...playlists, [playlist]: newList})
+    } 
+
     console.log(playlists);
 
     return (
@@ -41,7 +47,7 @@ function App() {
 
             <Switch>
                 <Route path="/playlists">
-                    <Playlist createNewPlaylist={createNewPlaylist} playlists={playlists} />
+                    <Playlist removeFromPlaylist={removeFromPlaylist} createNewPlaylist={createNewPlaylist} playlists={playlists} />
                 </Route>
 
                 <Route path="/">
