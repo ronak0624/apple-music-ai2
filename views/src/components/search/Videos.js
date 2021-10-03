@@ -14,7 +14,7 @@ function Videos(props) {
 
                     return (
                         <div className="inline-block p-2">
-                            <div onClick={() => play(video.preview, 'audio', video.name, video.artistName)} >
+                            <div onClick={() => play(video.preview, 'video', video.name, video.artistName)} >
                                 <img src={artwork} alt="artwork"></img>
                                 <h4 className="font-semibold mt-2">{video.name}</h4>
                                 <span className="text-sm text-gray-600">{video.genreNames.join(", ")}</span>

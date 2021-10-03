@@ -14,6 +14,10 @@ function App() {
         setCurrentMedia({ src: src, type: type, name: name, artist: artist });
     }
 
+    const closePlayer = () => {
+        setCurrentMedia(false);
+    }
+
     const addToPlaylist = (media, playlist, type) => {
         media.type = type;
 
@@ -54,7 +58,7 @@ function App() {
 
             </Switch>
 
-            {currentMedia && <MediaPlayer src={currentMedia.src} type={currentMedia.type} name={currentMedia.name} artist={currentMedia.artist} />}
+            {currentMedia && <MediaPlayer closePlayer= {closePlayer} src={currentMedia.src} type={currentMedia.type} name={currentMedia.name} artist={currentMedia.artist} />}
         </Router>
     );
 }

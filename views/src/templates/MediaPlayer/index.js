@@ -6,8 +6,10 @@ import Rewind from './Rewind';
 import Skip from './Skip';
 import Progress from './Progress';
 
+import { XIcon } from "@heroicons/react/outline";
+
 export default function Player(props) {
-    const { src, type, name, artist } = props;
+    const { src, type, name, artist, closePlayer } = props;
     let { currentTime, duration, playing, setPlaying, setClickedTime } = false;
 
 
@@ -16,9 +18,13 @@ export default function Player(props) {
     } else {
         ({ currentTime, duration, playing, setPlaying, setClickedTime } = videoPlayer());
     }
+    console.log(type);
 
     return (
         <div className="w-screen fixed bottom-0 bg-gray-700 p-5 text-gray-50">
+            <div onClick={() => closePlayer()} className="row-auto mb-3 cursor-pointer">
+                <XIcon className="w-8 h-8" />
+            </div>
             {type === "audio" ?
                 <div className="w-full">
                     <h2 className="text-xl">{name}</h2>
