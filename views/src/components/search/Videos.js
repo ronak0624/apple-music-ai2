@@ -1,5 +1,6 @@
 
 import AddToPlaylist from '../playlist/AddToPlaylist';
+import { PlayIcon } from "@heroicons/react/solid";
 
 function Videos(props) {
     const { resultList, play, addVideo, playlists } = props;
@@ -13,9 +14,12 @@ function Videos(props) {
                     artwork = artwork.replace("{h}", "800");
 
                     return (
-                        <div className="inline-block p-2">
+                        <div className="inline-block p-2 cursor-pointer">
                             <div onClick={() => play(video.preview, 'video', video.name, video.artistName)} >
-                                <img src={artwork} alt="artwork"></img>
+                                <div className="relative">
+                                    <img src={artwork} alt="artwork"></img>
+                                    <PlayIcon className="absolute w-16 h-16 right-1/2 top-1/2 transform translate-x-1/2 -translate-y-1/2 text-gray-400" />
+                                </div>
                                 <h4 className="font-semibold mt-2">{video.name}</h4>
                                 <span className="text-sm text-gray-600">{video.genreNames.join(", ")}</span>
                                 <p className="text-sm text-gray-600">Music Video</p>
