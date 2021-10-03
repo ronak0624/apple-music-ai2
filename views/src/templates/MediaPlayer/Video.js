@@ -30,7 +30,7 @@ export default function Video() {
             video.removeEventListener("loadeddata", setVideoData);
             video.removeEventListener("timeupdate", setVideoTime);
         }
-    });
+    }, [clickedTime, currentTime]);
 
     return {
         currentTime,

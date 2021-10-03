@@ -1,6 +1,5 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { SearchIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure } from '@headlessui/react'
+import {  MenuIcon, XIcon } from '@heroicons/react/outline'
 
 import { Link } from 'react-router-dom';
 
@@ -41,7 +40,7 @@ export default function Navbar() {
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
                                             <Link to={item.href}>
-                                                <a
+                                                <div
                                                     key={item.name}
                                                     className={classNames(
                                                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -50,7 +49,7 @@ export default function Navbar() {
                                                     aria-current={item.current ? 'page' : undefined}
                                                 >
                                                     {item.name}
-                                                </a>
+                                                </div>
                                             </Link>
                                         ))}
                                     </div>

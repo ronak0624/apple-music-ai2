@@ -9,7 +9,8 @@ export default function Playlist(props) {
     const [newPlaylist, setNewPlaylist] = useState("");
 
     return (
-        <div className="container mx-auto mt-5">
+        <div className="container mx-auto mt-5 px-3 md:px-1">
+            <h1 className="text-3xl font-bold my-5 ml-2">Your playlists</h1>
             <div className="flex flex-row justify-center w-full mb-5 cursor-pointer">
                 <div onClick={() => toggleFocus(!focus)} className="p-3 inline-block rounded-full bg-gray-100 text-gray-600">
                     {!focus ? <PlusIcon className="w-10 h-10" /> : <XIcon className="w-10 h-10" />}
@@ -23,8 +24,8 @@ export default function Playlist(props) {
                     <input onChange={(e) => setNewPlaylist(e.target.value)}
                         type="text"
                         placeholder="Name..."
-                        className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-3/4 pl-10" />
-                    <button onClick={() => createNewPlaylist(newPlaylist)} className="py-2 px-4 bg-blue-500 text-white rounded ml-2">Add</button>
+                        className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring flex-1 pl-10" />
+                    <button onClick={() => createNewPlaylist(newPlaylist)} className="py-2 px-4 flex-none bg-blue-500 text-white rounded ml-2">Add</button>
                 </div>
             }
             {Object.keys(playlists).map(name => {

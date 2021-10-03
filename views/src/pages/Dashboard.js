@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from 'axios';
 import { SearchIcon } from '@heroicons/react/outline';
 import Songs from '../components/search/Songs';
@@ -16,8 +16,8 @@ function Search(props) {
                 <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                     <SearchIcon />
                 </span>
-                <input onChange={props.onChange} type="text" placeholder="Search..." className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-3/4 pl-10" />
-                <button onClick={props.onSubmit} className="py-2 px-4 bg-blue-500 text-white rounded ml-2">Search</button>
+                <input onChange={props.onChange} type="text" placeholder="Search..." className="px-3 py-3 flex-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring pl-10" />
+                <button onClick={props.onSubmit} className="py-2 px-4 bg-blue-500 text-white rounded ml-2 flex-none">Search</button>
             </div>
         </div>
     )
@@ -39,7 +39,8 @@ export default function Dashboard(props) {
     console.log(results.station);
 
     return (
-        <div className="container w-3/4 mx-auto mt-5 pb-60">
+        <div className="container mx-auto mt-5 pb-60 px-3 md:px-1">
+            <h1 className="text-3xl font-bold my-5 ml-2">Browse media</h1>
             <Search onSubmit={(e) => submitSearch(e)} onChange={(e) => setSearchTerm(e.target.value)} />
             {results.song &&
                 <Songs playlists={playlists} addSong={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results.song} />

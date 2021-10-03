@@ -21,6 +21,8 @@ export default function Audio() {
 
         audio.addEventListener("timeupdate", setAudioTime);
 
+        playing ? audio.play() : audio.pause();
+
         if (clickedTime && clickedTime !== currentTime) {
             audio.currentTime = clickedTime;
             setClickedTime(null);
@@ -30,7 +32,7 @@ export default function Audio() {
             audio.removeEventListener("loadeddata", setAudioData);
             audio.removeEventListener("timeupdate", setAudioTime);
         }
-    });
+    }, [playing, clickedTime, currentTime]);
 
     return {
         currentTime,

@@ -1,9 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/solid'
 
-import Videos from '../search/Videos';
-import Songs from '../search/Songs';
-
 function Playlist(props) {
     const { list, removeFromPlaylist, playlistName, play } = props;
 
@@ -47,11 +44,11 @@ function Playlist(props) {
                     artwork = artwork.replace("{h}", "800");
 
                     return (
-                        <tr className="cursor-pointer" onClick={() => play(media.preview, 'audio', media.name, media.artistName)} key={i}>
+                        <tr className="cursor-pointer" onClick={() => play(media.preview, media.type, media.name, media.artistName)} key={i}>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0 h-10 w-10">
-                                        <img className="h-10 w-10 rounded-md" src={artwork} alt="artwork" alt="artwork" />
+                                        <img className="h-10 w-10 rounded-md" src={artwork} alt="artwork" />
                                     </div>
                                     <div className="ml-4">
                                         <div className="text-sm font-medium text-gray-900">{media.name}</div>
@@ -61,7 +58,7 @@ function Playlist(props) {
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">{media.albumName}</div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{media.type}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{media.type.charAt(0).toUpperCase() + media.type.slice(1)}</td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 {media.genreNames.join(", ")}
                             </td>
