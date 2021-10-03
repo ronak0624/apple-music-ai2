@@ -24,25 +24,25 @@ function Search(props) {
 }
 
 export default function Dashboard(props) {
-    const [results, setResults] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
-
-    const { playlists, addToPlaylist, play } = props;
+    
+    // Playlists and the state for search queries is stored in the top level component 
+    // so that it is saved when the page changes
+    const { playlists, addToPlaylist, play, searchResults, setSearchResults } = props;
+    const results = searchResults;
 
     const submitSearch = (e) => {
         e.preventDefault();
         toggleLoading(true);
         axios.get("/api/search?term=" + searchTerm).then(res => {
             toggleLoading(false);
-            setResults(res.data);
+            setSearchResults(res.data);
         }).catch(err => {
             toggleLoading(false);
             console.log(err);
         })
     }
-
-    console.log(results.station);
 
     return (
         <div className="container mx-auto mt-5 pb-60 px-3 md:px-1">

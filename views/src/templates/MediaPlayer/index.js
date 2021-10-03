@@ -18,7 +18,6 @@ export default function Player(props) {
     } else {
         ({ currentTime, duration, playing, setPlaying, setClickedTime } = videoPlayer());
     }
-    console.log(type);
 
     return (
         <div className="w-screen fixed bottom-0 bg-gray-700 p-5 text-gray-50">
@@ -28,7 +27,7 @@ export default function Player(props) {
             {type === "audio" ?
                 <div className="w-full">
                     <h2 className="text-xl">{name}</h2>
-                    <p className="text-lg">by {artist}</p>
+                    <p className="text-lg mb-5">by {artist}</p>
                     <Progress currentTime={currentTime} duration={duration} onTimeUpdate={(time) => setClickedTime(time)} />
                     <div className="w-full h-10 flex justify-center">
                         <audio id="audio" autoPlay src={src}></audio>

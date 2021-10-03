@@ -44,7 +44,7 @@ export default function Progress(props) {
                 onMouseDown={e => handleTimeDrag(e)}
             >
                 <span
-                    className="w-5 h-5 rounded-full bg-blue-600 border border-white absolute"
+                    className="w-5 h-5 rounded-full bg-blue-600 border cursor-pointer active:bg-blue-900 border-white absolute"
                     style={{ left: `${currentPercentage - 0.5}%` }}
                 />
             </div>

@@ -9,6 +9,7 @@ import { useState } from 'react'
 function App() {
     const [currentMedia, setCurrentMedia] = useState(false);
     const [playlists, setPlaylist] = useState(false);
+    const [searchResults, setSearchResults] = useState(false);
 
     const playMedia = (src, type, name, artist) => {
         setCurrentMedia({ src: src, type: type, name: name, artist: artist });
@@ -53,7 +54,7 @@ function App() {
                 </Route>
 
                 <Route path="/">
-                    <Dashboard playlists={playlists} addToPlaylist={addToPlaylist} play={playMedia} />
+                    <Dashboard searchResults={searchResults} setSearchResults={setSearchResults} playlists={playlists} addToPlaylist={addToPlaylist} play={playMedia} />
                 </Route>
 
             </Switch>
