@@ -33,8 +33,7 @@ export default function Audio() {
             audio.removeEventListener("loadeddata", setAudioData);
             audio.removeEventListener("timeupdate", setAudioTime);
         }
-    }
-    );
+    });
 
     return {
         currentTime,
