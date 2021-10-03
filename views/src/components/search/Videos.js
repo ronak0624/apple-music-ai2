@@ -7,7 +7,7 @@ function Videos(props) {
     return (
         <div {...props}>
             <h3 className="text-xl font-bold mb-3">Music Videos</h3>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {resultList && resultList.map(video => {
                     let artwork = video.artwork.replace("{w}", "600");
                     artwork = artwork.replace("{h}", "800");

@@ -4,7 +4,7 @@ function Artists(props) {
     return (
         <div {...props}>
             <h3 className="text-xl font-bold mb-3">Artists</h3>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {resultList && resultList.map(artist => {
 
                     return (

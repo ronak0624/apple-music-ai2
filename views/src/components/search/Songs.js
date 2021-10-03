@@ -7,7 +7,7 @@ function Songs(props) {
     return (
         <div {...props}>
             <h3 className="text-xl font-bold mb-3">Songs</h3>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {resultList && resultList.map(song => {
                     let artwork = song.artwork.replace("{w}", "600");
                     artwork = artwork.replace("{h}", "800");
