@@ -11,7 +11,7 @@ function Albums(props) {
 
                     return (
                         <div className="inline-block p-2">
-                            <img src={artwork}></img>
+                            <img src={artwork} alt="artwork"></img>
                             <h4 className="font-semibold mt-2">{album.name}</h4>
                             <span className="text-sm text-gray-600">{album.genreNames.join(", ")}</span>
                             <p className="text-sm text-gray-600">Album</p>

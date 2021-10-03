@@ -5,6 +5,8 @@ import Songs from '../components/search/Songs';
 import Videos from '../components/search/Videos';
 import Albums from '../components/search/Albums';
 import Artists from '../components/search/Artists';
+import Stations from '../components/search/Stations';
+import Playlists from '../components/search/Playlists';
 
 
 function Search(props) {
@@ -30,9 +32,11 @@ export default function Dashboard(props) {
         axios.get("/api/search?term=" + searchTerm).then(res => {
             setResults(res.data);
         }).catch(err => {
-            setResults(err.response.data);
+            console.log(err);
         })
     }
+
+    console.log(results.station);
 
     return (
         <div className="container w-3/4 mx-auto mt-5 pb-60">
@@ -45,12 +49,20 @@ export default function Dashboard(props) {
                 <Artists className="mt-5 border rounded p-5 border-gray-200" resultList={results.artist} />
             }
 
+            {results['music-video'] &&
+                <Videos playlists={playlists} addVideo={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results['music-video']} />
+            }
+
             {results.album &&
                 <Albums className="mt-5 border rounded p-5 border-gray-200" resultList={results.album} />
             }
 
-            {results['music-video'] &&
-                <Videos playlists={playlists} addVideo={addToPlaylist} play={play} className="mt-5 border rounded p-5 border-gray-200" resultList={results['music-video']} />
+            {results.station && results.station.length > 0 &&
+                <Stations className="mt-5 border rounded p-5 border-gray-200" resultList={results.station} />
+            }
+
+            {results.playlists && results.playlists.length > 0 && 
+                <Playlists className="mt-5 border rounded p-5 border-gray-200" resultList={results.playlists} />
             }
         </div>
     )

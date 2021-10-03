@@ -51,7 +51,7 @@ function Playlist(props) {
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0 h-10 w-10">
-                                        <img className="h-10 w-10 rounded-md" src={artwork} alt="artwork" />
+                                        <img className="h-10 w-10 rounded-md" src={artwork} alt="artwork" alt="artwork" />
                                     </div>
                                     <div className="ml-4">
                                         <div className="text-sm font-medium text-gray-900">{media.name}</div>

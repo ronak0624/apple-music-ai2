@@ -15,7 +15,7 @@ function Songs(props) {
                     return (
                         <div className="inline-block p-2">
                             <div onClick={() => play(song.preview, 'audio', song.name, song.artistName)} >
-                                <img src={artwork}></img>
+                                <img src={artwork} alt="artwork"></img>
                                 <h4 className="font-semibold mt-2">{song.name}</h4>
                                 <span className="text-sm text-gray-600">{song.genreNames.join(", ")}</span>
                                 <p className="text-sm text-gray-600">Song</p>

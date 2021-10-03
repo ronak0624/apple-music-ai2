@@ -32,12 +32,10 @@ function App() {
     }
 
     const removeFromPlaylist = (id, playlist) => {
-        let newList = playlists[playlist].filter(item => item.id != id);
+        let newList = playlists[playlist].filter(item => item.id !== parseInt(id));
 
         setPlaylist({...playlists, [playlist]: newList})
     } 
-
-    console.log(playlists);
 
     return (
         <Router>
