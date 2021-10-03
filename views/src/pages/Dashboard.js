@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import axios from 'axios';
 import { SearchIcon } from '@heroicons/react/outline';
+import Songs from '../components/search/Songs';
+import Videos from '../components/search/Videos';
 
 
 function Search(props) {
@@ -14,32 +16,6 @@ function Search(props) {
             </div>
             <button onClick={props.onSubmit} className="py-2 px-4 bg-blue-500 text-white rounded">Search</button>
         </div>
-    )
-}
-
-function Songs(props) {
-    const { resultList } = props;
-
-    return (
-        <div {...props}>
-            <h3 className="text-xl font-bold mb-3">Songs</h3>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                {resultList && resultList.map(song => {
-                    let artwork = song.artwork.replace("{w}", "600");
-                    artwork = artwork.replace("{h}", "800");
-
-                    return (
-                        <div onClick={() => props.play(song.preview)} className="inline-block p-2">
-                            <img src={artwork}></img>
-                            <h4 className="font-semibold mt-2">{song.name}</h4>
-                            <span className="text-sm text-gray-600">{song.genreNames.join(", ")}</span>
-                            <p className="text-sm text-gray-600">Song</p>
-                        </div>
-                    )
-                })}
-            </div>
-        </div>
-
     )
 }
 
@@ -82,32 +58,6 @@ function Artists(props) {
                             <h4 className="font-semibold mt-2">{artist.name}</h4>
                             <span className="text-sm text-gray-600">{artist.genreNames.join(", ")}</span>
                             <p className="text-sm text-gray-600">Artist</p>
-                        </div>
-                    )
-                })}
-            </div>
-        </div>
-    )
-}
-
-function Videos(props) {
-    const { resultList } = props;
-
-    return (
-        <div {...props}>
-            <h3 className="text-xl font-bold mb-3">Music Videos</h3>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                {resultList && resultList.map(video => {
-                    let artwork = video.artwork.replace("{w}", "600");
-                    artwork = artwork.replace("{h}", "800");
-                    console.log(video);
-
-                    return (
-                        <div onClick={() => props.play(video.preview)} className="inline-block p-2">
-                            <img src={artwork}></img>
-                            <h4 className="font-semibold mt-2">{video.name}</h4>
-                            <span className="text-sm text-gray-600">{video.genreNames.join(", ")}</span>
-                            <p className="text-sm text-gray-600">Music Video</p>
                         </div>
                     )
                 })}

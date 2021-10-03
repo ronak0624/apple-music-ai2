@@ -7,9 +7,10 @@ import { useState } from 'react'
 
 function App() {
     const [currentMedia, setCurrentMedia] = useState(false);
-    const playMedia = (src) => {
+
+    const playMedia = (src, type) => {
         console.log(src);
-        setCurrentMedia(src);
+        setCurrentMedia({src: src, type: type});
     }
 
     return (
@@ -24,7 +25,7 @@ function App() {
                 </Route>
             </Switch>
 
-            <MediaPlayer src={currentMedia} />
+           {currentMedia && <MediaPlayer src={currentMedia.src} type={currentMedia.type} />}
         </Router>
     );
 }
