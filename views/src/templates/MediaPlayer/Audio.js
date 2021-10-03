@@ -9,7 +9,6 @@ export default function Audio() {
 
     useEffect(() => {
         const audio = document.getElementById("audio");
-        console.log(audio)
 
         const setAudioData = () => {
             setDuration(audio.duration);
@@ -33,7 +32,7 @@ export default function Audio() {
             audio.removeEventListener("loadeddata", setAudioData);
             audio.removeEventListener("timeupdate", setAudioTime);
         }
-    });
+    }, [playing, clickedTime, currentTime]);
 
     return {
         currentTime,

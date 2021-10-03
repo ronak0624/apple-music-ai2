@@ -9,7 +9,6 @@ export default function Video() {
 
     useEffect(() => {
         const video = document.getElementById("video");
-        console.log(video)
 
         const setVideoData = () => {
             setDuration(video.duration);
@@ -31,7 +30,7 @@ export default function Video() {
             video.removeEventListener("loadeddata", setVideoData);
             video.removeEventListener("timeupdate", setVideoTime);
         }
-    });
+    }, [clickedTime, currentTime]);
 
     return {
         currentTime,
