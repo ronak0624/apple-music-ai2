@@ -12,13 +12,15 @@ import Playlists from '../components/search/Playlists';
 function Search(props) {
     return (
         <div>
-            <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-                    <SearchIcon />
-                </span>
-                <input onChange={props.onChange} type="text" placeholder="Search..." className="px-3 py-3 flex-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring pl-10" />
-                <button onClick={props.onSubmit} className="py-2 px-4 bg-blue-500 text-white rounded ml-2 flex-none">Search</button>
-            </div>
+            <form onSubmit={props.onSubmit}>
+                <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                    <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                        <SearchIcon />
+                    </span>
+                    <input onChange={props.onChange} type="text" placeholder="Search..." className="px-3 py-3 flex-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring pl-10" />
+                    <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded ml-2 flex-none">Search</button>
+                </div>
+            </form>
         </div>
     )
 }
@@ -26,7 +28,7 @@ function Search(props) {
 export default function Dashboard(props) {
     const [loading, toggleLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
-    
+
     // Playlists and the state for search queries is stored in the top level component 
     // so that it is saved when the page changes
     const { playlists, addToPlaylist, play, searchResults, setSearchResults } = props;

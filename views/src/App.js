@@ -12,10 +12,10 @@ function App() {
 
     const [searchResults, setSearchResults] = useState(false);
 
-    if (Object.keys(playlists).length === 0) {
+    if (playlists && Object.keys(playlists).length === 0) {
         let store = JSON.parse(sessionStorage.getItem("playlists"));
 
-        if (Object.keys(store).length !== 0) {
+        if (store && Object.keys(store).length !== 0) {
             setPlaylistHook(store)
         }
     }

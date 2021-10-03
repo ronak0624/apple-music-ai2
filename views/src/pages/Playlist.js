@@ -10,6 +10,11 @@ export default function Playlist(props) {
 
     const names = Object.keys(playlists);
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        createNewPlaylist(newPlaylist);
+    }
+
     return (
         <div className="container mx-auto mt-5 px-3 md:px-1">
             <h1 className="text-3xl font-bold mb-5 mt-10 ml-2">Your playlists</h1>
@@ -19,16 +24,18 @@ export default function Playlist(props) {
                 </div>
             </div>
             {focus &&
-                <div className="relative flex w-full flex-wrap items-stretch mb-3">
-                    <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-                        <PlusIcon className="text-gray-400" />
-                    </span>
-                    <input onChange={(e) => setNewPlaylist(e.target.value)}
-                        type="text"
-                        placeholder="Name..."
-                        className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring flex-1 pl-10" />
-                    <button onClick={() => createNewPlaylist(newPlaylist)} className="py-2 px-4 flex-none bg-blue-500 text-white rounded ml-2">Add</button>
-                </div>
+                <form onSubmit={(e) => onSubmit(e)}>
+                    <div className="relative flex w-full flex-wrap items-stretch mb-3">
+                        <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                            <PlusIcon className="text-gray-400" />
+                        </span>
+                        <input onChange={(e) => setNewPlaylist(e.target.value)}
+                            type="text"
+                            placeholder="Name..."
+                            className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring flex-1 pl-10" />
+                        <button type="submit" className="py-2 px-4 flex-none bg-blue-500 text-white rounded ml-2">Add</button>
+                    </div>
+                </form>
             }
             {names.length > 0 ?
                 names.map(name => {
