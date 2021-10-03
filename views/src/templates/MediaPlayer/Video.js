@@ -9,7 +9,6 @@ export default function Video() {
 
     useEffect(() => {
         const video = document.getElementById("video");
-        console.log(video)
 
         const setVideoData = () => {
             setDuration(video.duration);

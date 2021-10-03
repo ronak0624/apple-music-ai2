@@ -1,5 +1,8 @@
+
+import AddToPlaylist from '../playlist/AddToPlaylist';
+
 function Songs(props) {
-    const { resultList } = props;
+    const { resultList, play, addSong, playlists } = props;
 
     return (
         <div {...props}>
@@ -10,11 +13,14 @@ function Songs(props) {
                     artwork = artwork.replace("{h}", "800");
 
                     return (
-                        <div onClick={() => props.play(song.preview, 'audio', song.name, song.artistName)} className="inline-block p-2">
-                            <img src={artwork}></img>
-                            <h4 className="font-semibold mt-2">{song.name}</h4>
-                            <span className="text-sm text-gray-600">{song.genreNames.join(", ")}</span>
-                            <p className="text-sm text-gray-600">Song</p>
+                        <div className="inline-block p-2">
+                            <div onClick={() => play(song.preview, 'audio', song.name, song.artistName)} >
+                                <img src={artwork}></img>
+                                <h4 className="font-semibold mt-2">{song.name}</h4>
+                                <span className="text-sm text-gray-600">{song.genreNames.join(", ")}</span>
+                                <p className="text-sm text-gray-600">Song</p>
+                            </div>
+                            <AddToPlaylist type="audio" media={song} addToPlaylist={addSong} playlists={Object.keys(playlists)} />
                         </div>
                     )
                 })}

@@ -9,7 +9,6 @@ export default function Audio() {
 
     useEffect(() => {
         const audio = document.getElementById("audio");
-        console.log(audio)
 
         const setAudioData = () => {
             setDuration(audio.duration);
